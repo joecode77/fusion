@@ -109,13 +109,53 @@ backend/
 
 ## **Setup Instructions**
 
-### **Backend**
+### **Cloning the Repository**
 
-1. Clone the repository:
+Since the repository uses submodules, you need to initialize and clone them as well:
+
+```bash
+git clone --recurse-submodules https://github.com/joecode77/fusion.git
+
+```
+
+If you’ve already cloned the repository without submodules, initialize and update them manually:
+
+```bash
+git submodule update --init --recursive
+
+```
+
+### **Frontend Setup**
+
+1. Navigate to the `frontend` folder:
 
    ```bash
-   git clone https://github.com/joecode77/fusion.git
-   cd fusion/backend
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open the app in your browser:
+   ```
+   http://localhost:5173
+   ```
+
+### **Backend Setup**
+
+1. Navigate to the `backend` folder:
+
+   ```bash
+   cd backend
    ```
 
 2. Install dependencies:
@@ -138,31 +178,6 @@ backend/
 4. Start the backend server:
    ```bash
    npm run dev
-   ```
-
-### **Frontend**
-
-1. Navigate to the `frontend` folder:
-
-   ```bash
-   cd ../frontend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-4. Open the app in your browser:
-   ```
-   http://localhost:5173
    ```
 
 ---
