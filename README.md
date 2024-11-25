@@ -175,10 +175,59 @@ git submodule update --init --recursive
    SECRET_KEY=your-secret-key
    ```
 
-4. Start the backend server:
+4. Install MySQL if it's not already installed. For example, on Ubuntu:
+
    ```bash
-   npm run dev
+   sudo apt update
+   sudo apt install mysql-server
    ```
+
+5. Log in to the MySQL CLI:
+
+   ```bash
+   mysql -u root -p
+
+   ```
+
+6. Create a new database:
+
+```bash
+CREATE DATABASE productivity_db;
+```
+
+7. (Optional) Create a new user with specific privileges:
+
+```bash
+CREATE USER 'productivity_user'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON productivity_db.* TO 'productivity_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+8. Configure `AppDataSource`
+
+In `src/db/db.setup.ts`, you’ll find the `synchronize` option in the TypeORM configuration. For development purposes, you can temporarily set:
+
+```typescript
+synchronize: true;
+```
+
+**⚠️ Important:** Setting `synchronize: true` will automatically synchronize the database schema with your entities, which is convenient for development. However, **do not use `synchronize: true` in a production environment**, as it can lead to data loss or unintended schema changes.
+
+---
+
+9. Run Database Migrations
+
+For production and staging environments, always use migrations to handle schema updates. Run the migrations with:
+
+```bash
+npm run typeorm migration:run
+```
+
+8. Start the backend server:
+
+```bash
+   npm run dev
+```
 
 ---
 
@@ -214,3 +263,7 @@ git submodule update --init --recursive
 ---
 
 Feel free to reach out if you have any questions or need assistance with the setup!
+
+```
+
+```
